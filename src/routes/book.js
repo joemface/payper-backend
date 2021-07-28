@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
     const collection = client.db("payper").collection("books");
     collection.find().toArray((err,books)=>{
 
-  
+      console.log(books);
       res.send(JSON.stringify(books));
       client.close();
     });
