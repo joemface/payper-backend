@@ -13,10 +13,10 @@ var client = require('../mongoConfig/booksConnection');
 router.get('/', function(req, res, next) {
   client.connect(err =>{
     const collection = client.db("payper").collection("books");
-    collection.find().toArray((err,books)=>{
+    collection.find({}).toArray((err,books)=>{
 
       res.send(JSON.stringify(books));
-      client.close();
+      //client.close();
     });
 
   });
