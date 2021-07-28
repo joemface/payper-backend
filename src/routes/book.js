@@ -8,23 +8,20 @@ const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 //   {title: "The Lord of the Rings", subtitle: "The Two Towers", author: "J.R.R. Tolkien", price: 12.99, isbn: 9780007203598, copies: 3, img: "https://m.media-amazon.com/images/I/71u8+yoKy-L._AC_SX960_SY720_.jpg"},
 //   {title: "The Lord of the Rings", subtitle: "The Return of the King", author: "J.R.R. Tolkien", price: 6.99, isbn: 9788845270758, copies: 5, img: "https://images-na.ssl-images-amazon.com/images/I/51MlPWDaXGL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"},
 // ];
-var db, collection;
+
 /* GET books listing. */
 router.get('/', function(req, res, next) {
-  MongoClient.connect((err,client) =>{
-    if(err){throw err;}
-    db = client.db("payper");
-    collection = db.collection("books");
-    //const collection = client.db("payper").collection("books");
+  MongoClient.connect(err =>{
+    if(err){throw err};
+    const collection = client.db("payper").collection("books");
     collection.find().toArray((err,books)=>{
-      if(err){throw err;}
+
   
       res.send(JSON.stringify(books));
       client.close();
     });
 
   });
-  next();
 });
 
 
