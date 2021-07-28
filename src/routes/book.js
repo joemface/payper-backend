@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     collection.find({}).toArray((err,books)=>{
 
       res.send(JSON.stringify(books));
-      //client.close();
+      client.close();
     });
 
   });
