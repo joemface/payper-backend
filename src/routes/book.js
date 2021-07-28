@@ -11,7 +11,7 @@ const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 var db, collection;
 /* GET books listing. */
 router.get('/', function(req, res, next) {
-  MongoClient.connect(uri,{ useNewUrlParser:true},(err,client) =>{
+  MongoClient.connect((err,client) =>{
     if(err){throw err;}
     db = client.db("payper");
     collection = db.collection("books");

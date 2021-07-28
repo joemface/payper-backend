@@ -18,19 +18,12 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.yk4je.mongodb.net/payper?retryWrites=true&w=majority`;
+
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(8081, ()=>{
-  MongoClient.connect(uri,{ useNewUrlParser:true},(err,client) =>{
-    if(err){throw err;}
-    db = client.db("payper");
-    collection = db.collection("books");
-    console.log("Connected to database!");
-  });
-});
+server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
