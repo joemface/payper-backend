@@ -8,20 +8,33 @@ var client = require('../mongoConfig/booksConnection');
 //   {title: "The Lord of the Rings", subtitle: "The Two Towers", author: "J.R.R. Tolkien", price: 12.99, isbn: 9780007203598, copies: 3, img: "https://m.media-amazon.com/images/I/71u8+yoKy-L._AC_SX960_SY720_.jpg"},
 //   {title: "The Lord of the Rings", subtitle: "The Return of the King", author: "J.R.R. Tolkien", price: 6.99, isbn: 9788845270758, copies: 5, img: "https://images-na.ssl-images-amazon.com/images/I/51MlPWDaXGL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"},
 // ];
-
+const collection = client.db("payper").collection("books");
 /* GET books listing. */
 router.get('/', function(req, res, next) {
   client.connect(err =>{
-    const collection = client.db("payper").collection("books");
+    
     collection.find().toArray((err,books)=>{
-
-      console.log(books);
-      res.send(JSON.stringify(books));
-      client.close();
+      
+  
+    res.status(202).send(JSON.stringify(books));
+     client.close();
     });
 
   });
 });
+
+router.get('/book/:isbn', function(req, res){
+  client.connect(err =>{
+    collection.findOne(req.body.params, projection)
+    .then(result =>{
+      if(result){
+        console.log("Successfully found the queried book!");
+      }
+      return result;
+    })
+
+  })
+})
 
 
 router.post('/create-book', function(req, res, next) {
