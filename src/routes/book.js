@@ -17,20 +17,18 @@ router.get('/', function(req, res, next) {
       
   
     res.status(202).send(JSON.stringify(books));
-     client.close();
+     //client.close();
     });
 
   });
 });
 
-router.get('/book/:isbn', function(req, res){
+router.get('/book/:isbn',  function(req, res){
   client.connect(err =>{
-    collection.findOne(req.body.params, projection)
-    .then(result =>{
-      if(result){
-        console.log("Successfully found the queried book!");
-      }
-      return result;
+     collection.findOne({isbn:req.params.isbn},async (err,result)=>{
+      //console.log("The book is: " + JSON.stringify(result));
+      await res.status(202).send(result);
+     
     })
 
   })

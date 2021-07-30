@@ -25,6 +25,7 @@ app.use(cors());
 
 //adding routes to app
 app.use('/', booksRouter);
+app.use('/book/:isbn', booksRouter);
 app.use('/users', usersRouter);
 app.use('/create-book', booksRouter);
 //app.use('/books', booksRouter );
