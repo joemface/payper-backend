@@ -27,6 +27,8 @@ app.use(cors());
 app.use('/', booksRouter);
 app.use('/book/:isbn', booksRouter);
 app.use('/users', usersRouter);
+app.use('/checkout');
+app.use('/shopping-cart');
 app.use('/create-book', booksRouter);
 //app.use('/books', booksRouter );
 
