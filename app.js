@@ -14,7 +14,7 @@ var app = express();
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -24,12 +24,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 //adding routes to app
-app.use('/', booksRouter);
-app.use('/book/:isbn', booksRouter);
+//app.use('/', booksRouter);
+app.use('/books', booksRouter);
 app.use('/users', usersRouter);
-app.use('/checkout');
-app.use('/shopping-cart');
-app.use('/create-book', booksRouter);
+app.use('/checkout',usersRouter);
+app.use('/shopping-cart',usersRouter);
+
 //app.use('/books', booksRouter );
 
 
@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 

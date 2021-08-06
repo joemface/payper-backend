@@ -1,4 +1,5 @@
 var express = require('express');
+const { ObjectId } = require('mongodb');
 const Book = require('../models/books');
 var router = express.Router();
 var client = require('../mongoConfig/booksConnection');
@@ -16,12 +17,14 @@ router.get('/', function(req, res, next) {
     collection.find().toArray((err,books)=>{
       
   
-    res.status(202).send(JSON.stringify(books));
+    res.status(200).send(JSON.stringify(books));
      //client.close();
     });
 
   });
 });
+
+
 
 router.get('/book/:isbn',  function(req, res){
   client.connect(err =>{
@@ -35,7 +38,7 @@ router.get('/book/:isbn',  function(req, res){
 })
 
 
-router.post('/create-book', function(req, res, next) {
+router.post('/book', function(req, res, next) {
   let title = req.body.title;
   let subtitle = req.body.subtitle;
   let author = req.body.author;
@@ -55,9 +58,44 @@ router.post('/create-book', function(req, res, next) {
      
     })
     .catch(err=>console.error(`Failed to insert item: ${err}`));
-    res.status(201).send('Successfully created a book!');
+    res.status(201).send('Successfully created the book!');
   });
   
+});
+
+
+router.put('/book', function(err, req, res, next){
+ // if(err) throw err;
+
+  let title = req.body.title;
+  let subtitle = req.body.subtitle;
+  let author = req.body.author;
+  let price = req.body.price;
+  let isbn = req.body.isbn;
+  let copies = req.body.copies;
+  let img = req.body.img;
+
+  let filter = {isbn: req.params.isbn};
+  let update = {
+    $set:{
+      title: title,
+      subtitle: subtitle,
+      author: author,
+      price: price,
+      isbn: isbn,
+      copies: copies,
+      img: img
+    }
+  }
+  
+  client.connect(err =>{
+    collection.findOneAndUpdate(filter,update, {upsert:false})
+    .then(result =>{
+      console.log(result);
+      res.status(204).send("Successfully updated the book!");
+    })
+
+ })
 });
 
 module.exports = router;
