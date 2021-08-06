@@ -25,7 +25,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.put('/book/:isbn', function( req, res){
-  // if(err) throw err;
+  
+   let ISBN = req.params.isbn;
    let title = req.body.title;
    let subtitle = req.body.subtitle;
    let author = req.body.author;
@@ -34,7 +35,7 @@ router.put('/book/:isbn', function( req, res){
    let copies = req.body.copies;
    let img = req.body.img;
  
-   let filter = {isbn: req.body.isbn};
+   let filter = {isbn: ISBN};
    let update = {
      $set:{
        title: title,
