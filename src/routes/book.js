@@ -24,7 +24,39 @@ router.get('/', function(req, res, next) {
   });
 });
 
-
+router.put('/book/:isbn', function( req, res){
+  // if(err) throw err;
+   let title = req.body.title;
+   let subtitle = req.body.subtitle;
+   let author = req.body.author;
+   let price = req.body.price;
+   let isbn = req.body.isbn;
+   let copies = req.body.copies;
+   let img = req.body.img;
+ 
+   let filter = {isbn: req.body.isbn};
+   let update = {
+     $set:{
+       title: title,
+       subtitle: subtitle,
+       author: author,
+       price: price,
+       isbn: isbn,
+       copies: copies,
+       img: img
+     }
+   }
+   
+   client.connect(err =>{
+     collection.findOneAndUpdate(filter,update, {upsert:false})
+     .then(result =>{
+       console.log(result);
+       //result.json();
+       res.status(204).send("Successfully updated the book!");
+     })
+ 
+  })
+ });
 
 router.get('/book/:isbn',  function(req, res){
   client.connect(err =>{
@@ -64,38 +96,6 @@ router.post('/book', function(req, res, next) {
 });
 
 
-router.put('/book', function(err, req, res, next){
- // if(err) throw err;
 
-  let title = req.body.title;
-  let subtitle = req.body.subtitle;
-  let author = req.body.author;
-  let price = req.body.price;
-  let isbn = req.body.isbn;
-  let copies = req.body.copies;
-  let img = req.body.img;
-
-  let filter = {isbn: req.params.isbn};
-  let update = {
-    $set:{
-      title: title,
-      subtitle: subtitle,
-      author: author,
-      price: price,
-      isbn: isbn,
-      copies: copies,
-      img: img
-    }
-  }
-  
-  client.connect(err =>{
-    collection.findOneAndUpdate(filter,update, {upsert:false})
-    .then(result =>{
-      console.log(result);
-      res.status(204).send("Successfully updated the book!");
-    })
-
- })
-});
 
 module.exports = router;
