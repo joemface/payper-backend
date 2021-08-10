@@ -1,10 +1,9 @@
 {
+    "name":"dx",
+    "version":"0.0.0",
     "private": true,
     "scripts": {
-        "start": "node src/bin/server"
-    },
-    "engines": {
-        "node": ">=0.12"
+        "start": "node src/bin/www"
     },
     "dependencies": {
         "body-parser": "^1.19.0",
@@ -16,10 +15,6 @@
         "http-errors": "~1.6.3",
         "jade": "^1.11.0",
         "mongodb": "^4.0.1",
-        "morgan": "~1.9.1",
-        "update-mongo": "^0.0.4"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.12"
+        "morgan": "~1.9.1"
     }
 }

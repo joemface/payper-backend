@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-//var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/book');
 
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 //adding routes to app
-app.use('/', booksRouter);
+app.use('/', indexRouter);
 app.use('/books', booksRouter);
 app.use('/users', usersRouter);
 app.use('/checkout',usersRouter);
