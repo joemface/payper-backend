@@ -18,10 +18,11 @@ router.get('/', function(req, res, next) {
       
   
     res.status(200).send(JSON.stringify(books));
-     //client.close();
     });
 
   });
+       client.close();
+
 });
 
 router.put('/book/:isbn', function( req, res){
