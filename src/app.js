@@ -1,12 +1,12 @@
-var createError = require('http-errors');
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-var indexRouter = require('./routes/index');
+//var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var booksRouter = require('./routes/book');
+//var booksRouter = require('./routes/book');
 
 
 
@@ -30,7 +30,7 @@ app.use('/users', usersRouter);
 app.use('/checkout',usersRouter);
 app.use('/shopping-cart',usersRouter);
 
-//app.use('/books', booksRouter );
+
 
 
 // catch 404 and forward to error handler
