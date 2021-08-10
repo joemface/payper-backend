@@ -19,9 +19,9 @@ router.get('/', function(req, res, next) {
   
     res.status(200).send(JSON.stringify(books));
     });
-
+    client.close();
   });
-       client.close();
+       
 
 });
 
