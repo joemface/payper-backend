@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 //adding routes to app
-//app.use('/', booksRouter);
+app.use('/', booksRouter);
 app.use('/books', booksRouter);
 app.use('/users', usersRouter);
 app.use('/checkout',usersRouter);
