@@ -26,9 +26,9 @@ app.use(cors());
 //adding routes to app
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
-app.use('/users', usersRouter);
-app.use('/checkout',usersRouter);
-app.use('/shopping-cart',usersRouter);
+//app.use('/users', usersRouter);
+//app.use('/checkout',usersRouter);
+//app.use('/shopping-cart',usersRouter);
 
 
 
