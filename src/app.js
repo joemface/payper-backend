@@ -24,8 +24,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 //adding routes to app
-app.use('/', booksRouter);
+//app.use('/', booksRouter);
+app.get('/', (req, res) => {
+  res.status(200).json({
+      status: "Successful!",
+      message: "API up and running!.."
+  });
+});
 app.use('/books', booksRouter);
+
 //app.use('/users', usersRouter);
 //app.use('/checkout',usersRouter);
 //app.use('/shopping-cart',usersRouter);
