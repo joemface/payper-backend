@@ -16,7 +16,10 @@ router.get("/",  (req, res) => {
   client.connect(() => {
     collection.find({}).toArray(function (err, books) {
       //console.log(books);
-      res.send(books);
+      res.status(200).json({
+        status: 'Success',
+        books
+    });
 
       client.close();
     });
