@@ -72,7 +72,7 @@ router.get('/book/:isbn',  function(req, res){
   client.connect(err =>{
     const collection = client.db("payper").collection("books");
      collection.findOne({isbn:req.params.isbn}, (err,result)=>{
-    console.log("The book is: " + JSON.stringify(result));
+    //console.log("The book is: " + JSON.stringify(result));
        res.status(202).send(result);
      
     })
