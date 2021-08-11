@@ -9,19 +9,19 @@ var client = require("../mongoConfig/booksConnection");
 //   {title: "The Lord of the Rings", subtitle: "The Return of the King", author: "J.R.R. Tolkien", price: 6.99, isbn: 9788845270758, copies: 5, img: "https://images-na.ssl-images-amazon.com/images/I/51MlPWDaXGL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"},
 // ];
 
-const collection = client.db("payper").collection("books");
+
 
 /* GET books listing. */
 router.get("/",  (req, res) => {
   client.connect(() => {
+    const collection = client.db("payper").collection("books");
     collection.find({}).toArray(function (err, books) {
       //console.log(books);
       res.status(200).json({
         status: 'Success',
-        books
-    });
+        books});
 
-      client.close();
+    client.close();
     });
   });
 });
