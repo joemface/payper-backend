@@ -60,7 +60,7 @@ router.put('/book/:isbn', function( req, res){
     const collection = client.db("payper").collection("books");
      collection.findOneAndUpdate(filter,update, {upsert:false})
      .then(result =>{
-       console.log(result);
+       //console.log(result);
        //result.json();
        res.status(204).send("Successfully updated the book!");
      })
