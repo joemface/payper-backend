@@ -22,22 +22,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
-var server = app.listen(8080);
-server.on('connection', function(socket) {
-  console.log("A new connection was made by a client.");
-  socket.setTimeout(60 * 1000); 
-  // 30 second timeout. Change this as you see fit.
-});
+
 
 //adding routes to app
-//app.use('/', booksRouter);
-app.get('/', (req, res) => {
-  res.status(200).json({
-      status: "Successful!",
-      message: "API up and running!.."
-  });
-});
-//1
+app.use('/', booksRouter);
 app.use('/books', booksRouter);
 
 //app.use('/users', usersRouter);
