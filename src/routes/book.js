@@ -3,7 +3,7 @@ const Book = require("../models/books");
 var router = express.Router();
 var client = require("../mongoConfig/booksConnection");
 
-router.get('/favicon.ico', function(req, res){ res.status(204)});
+router.get('/favicon.ico', function(req, res, next){ res.status(204)});
 
 router.get("/",  function(req, res,next) {
   client.connect(err => {
