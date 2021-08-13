@@ -3,9 +3,9 @@ const Book = require("../models/books");
 var router = express.Router();
 var client = require("../mongoConfig/booksConnection");
 
-router.get('/favicon.ico', (req, res) => res.status(204));
+router.get('/favicon.ico', function(req, res){ res.status(204)});
 
-router.get("/",  (req, res) => {
+router.get("/",  function(req, res) {
   client.connect(err => {
     const collection = client.db("payper").collection("books");
     collection.find({}).toArray(function (err, books) {
