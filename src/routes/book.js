@@ -5,7 +5,7 @@ var client = require("../mongoConfig/booksConnection");
 
 router.get('/favicon.ico', function(req, res){ res.status(204)});
 
-router.get("/",  function(req, res) {
+router.get("/",  function(req, res,next) {
   client.connect(err => {
     const collection = client.db("payper").collection("books");
     collection.find({}).toArray(function (err, books) {
@@ -15,7 +15,7 @@ router.get("/",  function(req, res) {
   });
 });
 
-router.put("/book/:isbn", function (req, res) {
+router.put("/book/:isbn", function (req, res, next) {
   let ISBN = req.params.isbn;
   let title = req.body.title;
   let subtitle = req.body.subtitle;
@@ -53,7 +53,7 @@ router.put("/book/:isbn", function (req, res) {
   });
 });
 
-router.get("/book/:isbn", function (req, res) {
+router.get("/book/:isbn", function (req, res, next) {
   client.connect((err) => {
     const collection = client.db("payper").collection("books");
     collection.findOne({ isbn: req.params.isbn }, (err, result) => {
