@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 //adding routes to app
-app.use("/", booksRouter);
+app.use("/", indexRouter);
 app.use("/books", booksRouter);
 
 // catch 404 and forward to error handler
