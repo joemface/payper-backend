@@ -9,7 +9,7 @@ router.get("/",  function(req, res,next) {
   client.connect(err => {
     const collection = client.db("payper").collection("books");
     collection.find({}).toArray(function (err, books) {
-      res.send(JSON.stringify(books));
+      res.status(200).send(books);
       client.close();
     });
   });
