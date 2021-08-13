@@ -6,7 +6,7 @@ var client = require("../mongoConfig/booksConnection");
 router.get('/favicon.ico', (req, res) => res.status(204));
 
 router.get("/",  (req, res) => {
-  client.connect(() => {
+  client.connect(err => {
     const collection = client.db("payper").collection("books");
     collection.find({}).toArray(function (err, books) {
       res.send(JSON.stringify(books));
